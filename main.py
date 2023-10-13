@@ -26,22 +26,24 @@ def format_full_name(contact_list):
 
 
 def union(contacts):
-    for contact in contacts:
-        for new_contact in contacts:
-            if contact[0] == new_contact[0] and contact[1] == new_contact[1] and contact is not new_contact:
-                if contact[2] == "":
-                    contact[2] = new_contact[2]
-                if contact[3] == "":
-                    contact[3] = new_contact[3]
-                if contact[4] == "":
-                    contact[4] = new_contact[4]
-                if contact[5] == "":
-                    contact[5] = new_contact[5]
-                if contact[6] == "":
-                    contact[6] = new_contact[6]
+    repeated_list=list()
+    for contact in range(len(contacts)-1):
+        for new_contact in range(contact+1,len(contacts)):
+            if contacts[contact][0] == contacts[new_contact][0] and contacts[contact][1] == contacts[new_contact][1]:
+                if contacts[contact][2] == "":
+                    contacts[contact][2] = contacts[new_contact][2]
+                if contacts[contact][3] == "":
+                    contacts[contact][3] = contacts[new_contact][3]
+                if contacts[contact][4] == "":
+                    contacts[contact][4] = contacts[new_contact][4]
+                if contacts[contact][5] == "":
+                    contacts[contact][5] = contacts[new_contact][5]
+                if contacts[contact][6] == "":
+                    contacts[contact][6] = contacts[new_contact][6]
+                repeated_list.append(contacts[new_contact])
     result_list = list()
     for item in contacts:
-        if item not in result_list:
+        if item not in result_list and item not in repeated_list:
             result_list.append(item)
     return result_list
 
